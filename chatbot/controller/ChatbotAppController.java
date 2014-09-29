@@ -23,31 +23,35 @@ public class ChatbotAppController
 		
 	}
 	/**
+	 * Allows other objects access to the notSoCleverbot.
+	 * @return The Chatbot for this app.
+	 */
+	
+	public Chatbot getNotSoCleverBot()
+	{
+		return notSoCleverBot;
+	}
+	
+	/**
 	 * Starts the Chatbot Application.
 	 */
 	public void start()
 	{
-	JOptionPane.showOptionDialog(null, "Yes or No?", null, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, appView);
+	String message = JOptionPane.showInputDialog(null, "Welcome to Chatbot, type in your name.");
 	/**
 	 * Currently this is just a little space I've left for testing stuff. JOptionPane.showOptionDialog works.
 	 */
-	String message = JOptionPane.showInputDialog(null, "Would you like to continue?");
 	/**
 	 * Shows this message and then gives an input option. Only activates once every time the program runs unless looped.
 	 */
 	
-	
-	if(notSoCleverBot.quitChecker(message))
+	while(!notSoCleverBot.quitChecker(message))
 	{
-			quit();
+		message = appView.displayChatbotConversations(message);
+		
+	}
 	}
 	
-	JOptionPane.showMessageDialog(null, "I'm still here.");
-	/**
-	 * Says "I'm still here." if quitChecker returns false. 
-	 */
-	System.exit(0);
-	}
 	private void quit()
 	{
 		JOptionPane.showMessageDialog(null, "Bye.");
