@@ -1,7 +1,11 @@
 package chatbot.model;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Christina Sadlier
+ * @version 1.2.1 10/1/14
+ */
 public class Chatbot
 {
 	private String name;

@@ -1,7 +1,5 @@
 package chatbot.controller;
 
-import javax.swing.JOptionPane;
-
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotView;
 /**
@@ -12,14 +10,19 @@ public class ChatbotAppController
 {
 	private ChatbotView appView;
 	private Chatbot notSoCleverBot;
+	private String startMessage;
 	
 	/**
 	 * Creates a ChatbotAppController and initializes the associated View and Model objects.
+	 */
+	/**
+	 * Constructor needs to initialize all the data members.
 	 */
 	public ChatbotAppController()
 	{
 		appView = new ChatbotView(this);
 		notSoCleverBot = new Chatbot("Lysandra");
+		startMessage = "Welcome to " + notSoCleverBot.getName() +"'s Chatbot, please type in your name.";
 		
 	}
 	/**
@@ -37,9 +40,9 @@ public class ChatbotAppController
 	 */
 	public void start()
 	{
-	String message = JOptionPane.showInputDialog(null, "Welcome to Chatbot, type in your name.");
+	String message = appView.displayChatbotConversations(startMessage);
 	/**
-	 * Currently this is just a little space I've left for testing stuff. JOptionPane.showOptionDialog works.
+	 * JOptionPane.showOptionDialog works.
 	 */
 	/**
 	 * Shows this message and then gives an input option. Only activates once every time the program runs unless looped.
@@ -50,18 +53,19 @@ public class ChatbotAppController
 		message = appView.displayChatbotConversations(message);
 		
 	}
+	/**
+	 * Quits the application with a message that the application is closing.
+	 */
+	    quit();
 	}
 	
 	private void quit()
 	{
-		JOptionPane.showMessageDialog(null, "Bye.");
+		appView.displayInformation("Goodbye user.");
 		System.exit(0);
 		/**
-		 * Completely closes the application, activated if quitChecker is true from line 34.
+		 * Completely closes the application, activated if quitChecker is true.
 		 */
 	}
-	/**
-	 * The items above only work once unless put in a loop. 
-	 */
 
 }
