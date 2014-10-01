@@ -23,6 +23,9 @@ public class Chatbot
 		this.name = name;
 		numberOfChats = 0;
 		// this. means talk to the current class
+		
+		memeList = new ArrayList<String>();
+		fillTheMemeList();
 	}
 
 	public String getName()
@@ -52,6 +55,61 @@ public class Chatbot
 	{
 		numberOfChats++;
 	}
+	
+	/**
+	 * Fills the memeList with memes.
+	 */
+	private void fillTheMemeList()
+	
+	{
+		memeList.add("y u mad bro");
+		memeList.add("Ain't nobody got time for dat");
+		memeList.add("like a sir");
+		memeList.add("No.");
+		memeList.add("Challenge Accepted");
+		memeList.add("Me gusta");
+		memeList.add("One does not simply");
+		memeList.add("Y U no");
+	}
+	
+	
+	/**
+	 * Processed the supplied text from the user to provide a message from the Chatbot.
+	 * @param userText The user supplied text.
+	 * @return What the Chatbot says because of the supplied input.
+	 */
+	public String processText(String userText)
+	{
+		String processedText = "";
+		return processedText;
+	}
+	
+	private boolean memeChecker(String currentText)
+	{
+		boolean isAMeme = false;
+		
+		for(String currentMeme : memeList)
+		{
+			if(currentMeme.equalsIgnoreCase(currentText))
+			{
+				isAMeme = true;
+			}
+		}
+		/**
+		 * Loop above and loop below do the same thing.
+		 */
+		
+		for(int loopCount = 0; loopCount < memeList.size(); loopCount++)
+		{
+			if(memeList.get(loopCount).equalsIgnoreCase(currentText))
+			{
+				isAMeme = true;
+			}
+		}
+		
+		return isAMeme;
+	}
+	
 	
 	public boolean quitChecker(String input)
 	{

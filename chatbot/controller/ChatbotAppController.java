@@ -49,10 +49,10 @@ public class ChatbotAppController
 	 */
 	
 	while(!notSoCleverBot.quitChecker(message))
-	{
+		{
+		message = notSoCleverBot.processText(message);
 		message = appView.displayChatbotConversations(message);
-		
-	}
+		}
 	/**
 	 * Quits the application with a message that the application is closing.
 	 */
