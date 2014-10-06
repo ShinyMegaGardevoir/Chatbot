@@ -23,7 +23,7 @@ public class Chatbot
 		this.name = name;
 		numberOfChats = 0;
 		// this. means talk to the current class
-		
+		name="";
 		memeList = new ArrayList<String>();
 		fillTheMemeList();
 	}
@@ -81,7 +81,73 @@ public class Chatbot
 	public String processText(String userText)
 	{
 		String processedText = "";
+		incrementChats();
+		
+		int randomChoice = (int) (Math.random() * 3);
+		
+		if(randomChoice == 0)
+		{
+			stringLengthChecker(userText);
+			processedText = "*Yaaaawn.*";
+		}
+		else if (randomChoice == 1)
+		{
+			processedText = "I'm bored.";
+			processedText = " Do you remember my name?";
+			
+			if(contentChecker(userText))
+			{
+				processedText = "Hey! You got it right.";
+			}
+			else
+			{
+				processedText = " + userText + ";
+				processedText = " is not my name.";
+			}
+		}
+		else
+		{
+		 if(memeChecker(userText))
+		 	{
+			 processedText = "Oh, you found a meme: " + userText;
+			 processedText += ". Heh.";
+		 	}
+		 else
+		 	{
+			 processedText = "Boring, that wasn't a meme.";
+		 	}
+		}
+		 
 		return processedText;
+	}
+	/**
+	 * Checks to see if the supplied user text matches any of the memes in the Chatbot's meme list.
+	 * @param currentText The user supplied text.
+	 * @return Whether the String matched any of the built in memes. 
+	 */
+	private boolean stringLengthChecker(String input)
+	{
+		boolean isTooLong = false;
+		if(input.length() >= 20)
+		{
+			isTooLong = true;
+		}
+		return isTooLong;
+	}
+	
+	
+	
+	
+	private boolean contentChecker(String input)
+	{
+		boolean hasMyContent = false;
+			if(input.contains(name))
+			{
+				hasMyContent = true;
+			}
+			
+		return hasMyContent;
+			
 	}
 	
 	private boolean memeChecker(String currentText)
