@@ -85,24 +85,33 @@ public class Chatbot
 		
 		int randomChoice = (int) (Math.random() * 3);
 		
+		if(userText != null)
+		{
+			
+		
 		if(randomChoice == 0)
 		{
-			stringLengthChecker(userText);
-			processedText = "*Yaaaawn.*";
+			if(stringLengthChecker(userText))
+			{
+				processedText = "*Yaaaawn.* That's too long.";
+			}
+			else
+			{
+				processedText = "Why so short?";
+			}
+			
 		}
 		else if (randomChoice == 1)
 		{
-			processedText = "I'm bored.";
-			processedText = " Do you remember my name?";
+			processedText = "I'm bored. Do you remember my name?";
 			
-			if(contentChecker(userText))
+			if(userText != "Lysandra")
 			{
 				processedText = "Hey! You got it right.";
 			}
 			else
 			{
-				processedText = " + userText + ";
-				processedText = " is not my name.";
+				processedText = " " + userText + " is not my name.";
 			}
 		}
 		else
@@ -116,6 +125,7 @@ public class Chatbot
 		 	{
 			 processedText = "Boring, that wasn't a meme.";
 		 	}
+		}
 		}
 		 
 		return processedText;
