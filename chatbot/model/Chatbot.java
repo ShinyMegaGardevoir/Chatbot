@@ -105,7 +105,7 @@ public class Chatbot
 		{
 			processedText = "I'm bored. Do you remember my name?";
 			
-			if(userText != "Lysandra")
+			if(userText != ("Lysandra"))
 			{
 				processedText = "Hey! You got it right.";
 			}

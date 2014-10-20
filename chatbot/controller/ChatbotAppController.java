@@ -1,6 +1,7 @@
 package chatbot.controller;
 
 import chatbot.model.Chatbot;
+import chatbot.view.ChatbotFrame;
 import chatbot.view.ChatbotView;
 /**
  * Imports the Chatbot and ChatbotView from the chatbot.model and chatbot.view packages.
@@ -8,10 +9,26 @@ import chatbot.view.ChatbotView;
  */
 public class ChatbotAppController
 {
+	/**
+	 * This is the View.
+	 */
 	private ChatbotView appView;
+	/**
+	 * This is the Model.
+	 */
 	private Chatbot notSoCleverBot;
+	/**
+	 * This is the startup Message.
+	 */
 	private String startMessage;
 	
+	
+	private String endMessage;
+	
+	/**
+	 * This is the frame for the pop up.
+	 */
+	private ChatbotFrame baseFrame;
 	/**
 	 * Creates a ChatbotAppController and initializes the associated View and Model objects.
 	 */
@@ -21,6 +38,7 @@ public class ChatbotAppController
 	public ChatbotAppController()
 	{
 		appView = new ChatbotView(this);
+		baseFrame = new ChatbotFrame(this);
 		notSoCleverBot = new Chatbot("Lysandra");
 		startMessage = "Welcome to " + notSoCleverBot.getName() +"'s Chatbot, please type in your name.";
 		
@@ -48,15 +66,23 @@ public class ChatbotAppController
 	 * Shows this message and then gives an input option. Only activates once every time the program runs unless looped.
 	 */
 	
-	while(!notSoCleverBot.quitChecker(message))
+	
+	/*while(!notSoCleverBot.quitChecker(message))
 		{
 		message = notSoCleverBot.processText(message);
 		message = appView.displayChatbotConversations(message);
 		}
+	*/
+	
+	
 	/**
 	 * Quits the application with a message that the application is closing.
 	 */
-	    quit();
+	
+	
+//	    quit();
+	
+	
 	}
 	
 	private void quit()
