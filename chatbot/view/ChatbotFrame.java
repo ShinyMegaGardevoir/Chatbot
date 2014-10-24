@@ -3,7 +3,11 @@ package chatbot.view;
 import javax.swing.JFrame;
 
 import chatbot.controller.ChatbotAppController;
-
+/**
+ * Frame sets panel. It's like a runner.
+ * @author csad2045
+ *
+ */
 public class ChatbotFrame extends JFrame
 {
 	/**
@@ -32,7 +36,7 @@ public class ChatbotFrame extends JFrame
 		/**
 		 * Sets the size of the GUI.
 		 */
-		this.setSize(400, 400);
+		this.setSize(603, 350);
 		/**
 		 * Makes it so that the GUI is not resizable.
 		 */
