@@ -1,6 +1,6 @@
 package chatbot.model;
 
-import java.util.ArrayList;
+import java.util.*;
 /**
  * 
  * @author Christina Sadlier
@@ -11,6 +11,7 @@ public class Chatbot
 	private String name;
 	private int numberOfChats;
 	private ArrayList<String> memeList;
+	private Scanner aScanner;
 	
 	
 
@@ -27,6 +28,8 @@ public class Chatbot
 		memeList = new ArrayList<String>();
 		fillTheMemeList();
 	}
+	
+	
 
 	public String getName()
 	{
@@ -104,8 +107,9 @@ public class Chatbot
 		else if (randomChoice == 1)
 		{
 			processedText = "I'm bored. Do you remember my name?";
+			String answer = aScanner.next();
 			
-			if(userText != ("Lysandra"))
+			if(answer.equals("Lysandra"))
 			{
 				processedText = "Hey! You got it right.";
 			}

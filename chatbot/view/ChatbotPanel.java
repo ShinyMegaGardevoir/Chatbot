@@ -12,8 +12,7 @@ import java.awt.Font;
 
 public class ChatbotPanel extends JPanel
 {
-	JButton b1;
-	JLabel l1;
+	
 	private JLabel background;
 		
 	/**
@@ -24,6 +23,7 @@ public class ChatbotPanel extends JPanel
 	private JTextArea chatArea;
 	private JScrollPane chatPane;
 	private JButton randomButton;
+	
 
 	
 	
@@ -51,6 +51,8 @@ public class ChatbotPanel extends JPanel
 		
 		baseLayout.putConstraint(SpringLayout.WEST, sampleField, 225, SpringLayout.WEST, this);
 		background=new JLabel(new ImageIcon(getClass().getResource("/chatbot/view/images/trinitylettersheet.png")));
+		
+		randomButton = new JButton("Give me a random topic.");
 		
 		
 		/**
@@ -119,6 +121,8 @@ public class ChatbotPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 53, SpringLayout.EAST, chatPane);
 		baseLayout.putConstraint(SpringLayout.EAST, chatArea, 355, SpringLayout.WEST, this);
 		
+		baseLayout.putConstraint(SpringLayout.NORTH, randomButton, -40, SpringLayout.SOUTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.WEST, randomButton, 190, SpringLayout.WEST, this);
 		
 		
 	}
