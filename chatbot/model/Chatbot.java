@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  * @author Christina Sadlier
- * @version 1.2.1 10/1/14
+ * @version 1.4 11/4/14 - Added reference to the user.
  */
 public class Chatbot
 {
@@ -91,48 +91,56 @@ public class Chatbot
 		if(userText != null)
 		{
 			
-		
-		if(randomChoice == 0)
-		{
-			if(stringLengthChecker(userText))
+			if (numberOfChats < 10)
 			{
-				processedText = "*Yaaaawn.* That's too long.";
+				// I need if's or a switch
 			}
 			else
 			{
-				processedText = "Why so short?";
+				if(randomChoice == 0)
+				{
+					if(stringLengthChecker(userText))
+					{
+						processedText = "*Yaaaawn.* That's too long.";
+					}
+					else
+					{
+						processedText = "Why so short?";
+					}
+					
+				}
+				else if (randomChoice == 1)
+				{
+					processedText = "I'm bored. Do you remember my name?";
+					String answer = aScanner.next();
+					
+					if(answer.equals("Lysandra"))
+					{
+						processedText = "Hey! You got it right.";
+					}
+					else
+					{
+						processedText = " " + userText + " is not my name.";
+					}
+				}
+				else
+				{
+				 if(memeChecker(userText))
+				 	{
+					 processedText = "Oh, you found a meme: " + userText;
+					 processedText += ". Heh.";
+				 	}
+				 else
+				 	{
+					 processedText = "Boring, that wasn't a meme.";
+				 	}
+				}
+				}
+				 
+				
 			}
-			
-		}
-		else if (randomChoice == 1)
-		{
-			processedText = "I'm bored. Do you remember my name?";
-			String answer = aScanner.next();
-			
-			if(answer.equals("Lysandra"))
-			{
-				processedText = "Hey! You got it right.";
-			}
-			else
-			{
-				processedText = " " + userText + " is not my name.";
-			}
-		}
-		else
-		{
-		 if(memeChecker(userText))
-		 	{
-			 processedText = "Oh, you found a meme: " + userText;
-			 processedText += ". Heh.";
-		 	}
-		 else
-		 	{
-			 processedText = "Boring, that wasn't a meme.";
-		 	}
-		}
-		}
-		 
 		return processedText;
+	
 	}
 	/**
 	 * Checks to see if the supplied user text matches any of the memes in the Chatbot's meme list.

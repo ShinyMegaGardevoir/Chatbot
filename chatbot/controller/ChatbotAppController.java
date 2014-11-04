@@ -2,6 +2,7 @@ package chatbot.controller;
 
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotFrame;
+import chatbot.view.ChatbotPanel;
 import chatbot.view.ChatbotView;
 /**
  * Imports the Chatbot and ChatbotView from the chatbot.model and chatbot.view packages.
@@ -58,31 +59,24 @@ public class ChatbotAppController
 	 */
 	public void start()
 	{
-//	String message = appView.displayChatbotConversations(startMessage);
+	String message = appView.displayChatbotConversations(startMessage);
 	/**
 	 * JOptionPane.showOptionDialog works.
 	 */
-	/**
-	 * Shows this message and then gives an input option. Only activates once every time the program runs unless looped.
-	 */
 	
+	    ChatbotPanel myAppPanel = (ChatbotPanel) baseFrame.getContentPane();
+	    myAppPanel.displayTextToUser(startMessage);
+	    
+//	    ((ChatbotPanel) baseFrame.getContentPane()).displayTextToUser(startMessage);
+	    
+	}
 	
-	/*while(!notSoCleverBot.quitChecker(message))
-		{
-		message = notSoCleverBot.processText(message);
-		message = appView.displayChatbotConversations(message);
-		}
-	*/
-	
-	
-	/**
-	 * Quits the application with a message that the application is closing.
-	 */
-	
-	
-//	    quit();
-	
-	
+	public String sendTextToChatBot(String userInput)
+	{
+		String respondText = "";
+		
+		respondText = notSoCleverBot.processText(userInput);
+		return respondText;
 	}
 	
 	private void quit()
