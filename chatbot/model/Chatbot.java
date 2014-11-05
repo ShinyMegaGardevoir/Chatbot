@@ -84,7 +84,6 @@ public class Chatbot
 	public String processText(String userText)
 	{
 		String processedText = "";
-		incrementChats();
 		
 		int randomChoice = (int) (Math.random() * 3);
 		
@@ -139,6 +138,7 @@ public class Chatbot
 				 
 				
 			}
+		incrementChats();
 		return processedText;
 	
 	}
@@ -172,6 +172,11 @@ public class Chatbot
 			
 	}
 	
+	/**
+	 * 
+	 * @param currentText
+	 * @return isAMeme (will either be true or false based on the input.)
+	 */
 	private boolean memeChecker(String currentText)
 	{
 		boolean isAMeme = false;
@@ -198,7 +203,11 @@ public class Chatbot
 		return isAMeme;
 	}
 	
-	
+	/**
+	 * 
+	 * @param input If the user says "no" then it gives the OK to quit.
+	 * @return Ok to quit. (Gives the OK for the program to quit.)
+	 */
 	public boolean quitChecker(String input)
 	{
 		boolean okToQuit = false;
