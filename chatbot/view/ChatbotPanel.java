@@ -134,7 +134,7 @@ public class ChatbotPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String userTypedText = sampleField.getText();
-				String chatbotResponse = baseController.sendTextToChatBot(userTypedText);
+     			String chatbotResponse = baseController.sendTextToChatBot(userTypedText);
 				displayTextToUser(userTypedText);
 				displayTextToUser(chatbotResponse);
 				sampleField.setText("");

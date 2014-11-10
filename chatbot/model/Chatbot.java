@@ -1,6 +1,7 @@
 package chatbot.model;
 
 import java.util.*;
+import model.ChatUser;
 /**
  * 
  * @author Christina Sadlier
@@ -12,6 +13,8 @@ public class Chatbot
 	private int numberOfChats;
 	private ArrayList<String> memeList;
 	private Scanner aScanner;
+	private ArrayList<String> userInputList;
+	private ChatUser myUser;
 	
 	
 
@@ -26,7 +29,9 @@ public class Chatbot
 		// this. means talk to the current class
 		name="";
 		memeList = new ArrayList<String>();
+		userInputList = new ArrayList<String>();
 		fillTheMemeList();
+		myUser = new ChatUser();
 	}
 	
 	
@@ -76,6 +81,7 @@ public class Chatbot
 	}
 	
 	
+	
 	/**
 	 * Processed the supplied text from the user to provide a message from the Chatbot.
 	 * @param userText The user supplied text.
@@ -85,12 +91,12 @@ public class Chatbot
 	{
 		String processedText = "";
 		
-		int randomChoice = (int) (Math.random() * 3);
+		int randomChoice = (int) (Math.random() * 6);
 		
 		if(userText != null)
 		{
 			
-			if (numberOfChats < 10)
+			if (numberOfChats < 5)
 			{
 				// I need if's or a switch
 			}
@@ -98,45 +104,51 @@ public class Chatbot
 			{
 				if(randomChoice == 0)
 				{
-					if(stringLengthChecker(userText))
-					{
-						processedText = "*Yaaaawn.* That's too long.";
-					}
-					else
-					{
-						processedText = "Why so short?";
-					}
-					
+					myUser.setName(userText);
+					processedText = "Hello " + myUser.getName() + ". What is your age?";
 				}
 				else if (randomChoice == 1)
 				{
-					processedText = "I'm bored. Do you remember my name?";
-					String answer = aScanner.next();
-					
-					if(answer.equals("Lysandra"))
+					int age = Integer.parseInt(userText);
+					myUser.setAge(age);
+					processedText = "Oh, so you're " + myUser.getAge() + ".";
+					processedText +="\nWhat is your favorite Pokemon?";
+				}
+				
+				else if (randomChoice == 2)
+				{
+					myUser.setFavoritePokemon(userText);
+					processedText = "" + myUser.getFavoritePokemon() + " is your favorite Pokemon?";
+				}
+				else if (randomChoice == 3)
+				{
+					//userInput list add
+					//Should store a string in processedText from another method (chooseRandomUserInfo(String))
+				
+				}
+				
+				else if (randomChoice ==4)
+				{
+					userInputList.add(0, userText);
+					processedText = "Thanks for the input, "+ myUser.getName();
+				}
+				
+				else
+				{
+					//userInputChecker
+					if(userInputChecker(userText))
 					{
-						processedText = "Hey! You got it right.";
+						processedText = "Oh, what's this? Didn't we already talk about that?";
 					}
 					else
 					{
-						processedText = " " + userText + " is not my name.";
+						processedText = "I'm bored. Tell me something funny.";
 					}
+					
 				}
-				else
-				{
-				 if(memeChecker(userText))
-				 	{
-					 processedText = "Oh, you found a meme: " + userText;
-					 processedText += ". Heh.";
-				 	}
-				 else
-				 	{
-					 processedText = "Boring, that wasn't a meme.";
-				 	}
-				}
-				}
-				 
 				
+				
+				}
 			}
 		incrementChats();
 		return processedText;
@@ -147,6 +159,28 @@ public class Chatbot
 	 * @param currentText The user supplied text.
 	 * @return Whether the String matched any of the built in memes. 
 	 */
+	
+	
+	private boolean userInputChecker(String input)
+	{
+		boolean matchesInput = false;
+		
+		if(userInputList.size() > 0)
+		{
+			for(int loopCount = 0; loopCount < userInputList.size(); loopCount++)
+			{
+				if(input.equalsIgnoreCase(userInputList.get(loopCount)))
+				{
+					matchesInput = true;
+					userInputList.remove(loopCount);
+					loopCount--;
+				}
+			}
+		}
+		return matchesInput;
+	}
+	
+	
 	private boolean stringLengthChecker(String input)
 	{
 		boolean isTooLong = false;
@@ -156,8 +190,6 @@ public class Chatbot
 		}
 		return isTooLong;
 	}
-	
-	
 	
 	
 	private boolean contentChecker(String input)
