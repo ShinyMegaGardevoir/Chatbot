@@ -23,6 +23,7 @@ public class ChatbotPanel extends JPanel
 	private JTextArea chatArea;
 	private JScrollPane chatPane;
 	private JButton randomButton;
+	private ChatbotAppController baseController;
 	
 
 	

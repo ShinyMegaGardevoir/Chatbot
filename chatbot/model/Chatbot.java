@@ -1,7 +1,7 @@
 package chatbot.model;
 
 import java.util.*;
-import model.ChatUser;
+import chatbot.model.ChatUser;
 /**
  * 
  * @author Christina Sadlier
@@ -12,10 +12,10 @@ public class Chatbot
 	private String name;
 	private int numberOfChats;
 	private ArrayList<String> memeList;
-	private Scanner aScanner;
 	private ArrayList<String> userInputList;
 	private ChatUser myUser;
-	
+	private String randomTopic;
+	private String introduceUser;
 	
 
 	/**
@@ -98,26 +98,36 @@ public class Chatbot
 			
 			if (numberOfChats < 5)
 			{
-				// I need if's or a switch
+				processedText = introduceUser(userText);
 			}
 			else
 			{
+//				processedText = randomChatTopic(userText);
+				
+				
+				
+//              else { numberOfChats--;   processedText = "Answer the question!!!"; }				
+				
+				
+				
+				
+				
 				if(randomChoice == 0)
 				{
-					myUser.setName(userText);
+					myUser.setName();
 					processedText = "Hello " + myUser.getName() + ". What is your age?";
 				}
 				else if (randomChoice == 1)
 				{
 					int age = Integer.parseInt(userText);
-					myUser.setAge(age);
+					myUser.setAge();
 					processedText = "Oh, so you're " + myUser.getAge() + ".";
 					processedText +="\nWhat is your favorite Pokemon?";
 				}
 				
 				else if (randomChoice == 2)
 				{
-					myUser.setFavoritePokemon(userText);
+					myUser.setFavoritePokemon();
 					processedText = "" + myUser.getFavoritePokemon() + " is your favorite Pokemon?";
 				}
 				else if (randomChoice == 3)
@@ -133,22 +143,31 @@ public class Chatbot
 					processedText = "Thanks for the input, "+ myUser.getName();
 				}
 				
+				else if (randomChoice == 5)
+				{
+					randomTopic = "What?";
+				}
+				else
+				{
+					randomTopic = "Hmmm?";
+				}
+				
 				else
 				{
 					//userInputChecker
 					if(userInputChecker(userText))
 					{
-						processedText = "Oh, what's this? Didn't we already talk about that?";
+						randomTopic = chatbotNameConversation(userInput);
 					}
 					else
 					{
-						processedText = "I'm bored. Tell me something funny.";
+						randomTopic = noNameConversation(userInput);
 					}
 					
 				}
 				
-				
-				}
+			
+			}
 			}
 		incrementChats();
 		return processedText;
@@ -235,6 +254,12 @@ public class Chatbot
 		return isAMeme;
 	}
 	
+	private String introduceUser(String output)
+	{
+		return introduceUser;
+		
+	}
+	
 	/**
 	 * 
 	 * @param input If the user says "no" then it gives the OK to quit.
@@ -251,6 +276,55 @@ public class Chatbot
 		
 		return okToQuit;
 		
+	}
+	
+/**	public boolean blah(String currentText)
+	{
+		boolean blahblah;
+		if()
+		{
+			blahblah = true;
+		}
+		return blahblah;
+	}
+**/
+	
+	/**
+	 * Checks to see if the name of the chatbot is in the String supplied by the user.
+	 * @param currentInput The user supplied String.
+	 * @return Whether the name is inside or not. (True or false.)
+	 */
+	private boolean chatbotNameChecker(String currentInput)
+	{
+		boolean hasNameInString = false;
+		
+		if(currentInput.indexOf(this.getName()) > -1)
+ 		{
+			hasNameInString = true;
+		}
+		
+		return hasNameInString;
+	}
+	
+	private String chatbotNameConversation(String currentInput)
+	{
+		String nameConversation = "This is what you typed after my name: ";
+		
+		nameConversation.concat(currentInput.substring(currentInput.indexOf(this.getName()) + this.getName().length(), currentInput.length()));
+		
+		return nameConversation;
+	}
+	
+	private String noNameConversation(String currentInput)
+	{
+		String notNamed = "";
+		
+		int smallRandom = (int) (Math.random() * currentInput.length()/2);
+		int largerRandom = (int) (smallRandom + (Math.random() * (currentInput.length()/2)) + 1);
+		
+		notNamed = "You didn't say my name so here is a something just for you: " + currentInput.substring(smallRandom, largerRandom);
+		
+		return notNamed;
 	}
 
 }

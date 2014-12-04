@@ -37,4 +37,24 @@ public class ChatUser
 	{
 		return isReal;
 	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+	public void setFavoritePokemon(String favoritePokemon)
+	{
+		this.favoritePokemon = favoritePokemon;
+	}
+	public void setLikesCats(boolean likesCats)
+	{
+		this.likesCats = likesCats;
+	}
+	public void setIsReal(boolean isReal)
+	{
+		this.isReal = isReal;
+	}
 }
